@@ -6,6 +6,11 @@ module SessionsHelper
 	  user.update_attribute(:remember_token, User.encrypt(remember_token))
 	  self.current_user = user
 	end
+	  
+	def signed_in_user
+	  store_location
+	  redirect_to signin_url, notice: "Please sign in" unless signed_in?
+	end
 	
 	def current_user=(user)
 	  @current_user = user
